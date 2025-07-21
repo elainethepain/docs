@@ -36,16 +36,8 @@
                         "group": "API Documentation",
                         "pages": [
                             "api-reference/introduction"
-                        ]
-                    },
-                    {
-                        "group": "Endpoint Examples",
-                        "pages": [
-                            "api-reference/endpoint/get",
-                            "api-reference/endpoint/create",
-                            "api-reference/endpoint/delete",
-                            "api-reference/endpoint/webhook"
-                        ]
+                        ],
+                      "openapi": "openapi.json"
                     }
                 ]
             },
@@ -85,8 +77,7 @@
     },
     "footer": {
         "socials": {
-            "x": "",
-            "github": ""
+            "github": "https://github.com/Kamino-Finance"
         }
     }
 }
