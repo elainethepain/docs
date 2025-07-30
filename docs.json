@@ -1,20 +1,49 @@
 {
     "$schema": "https://mintlify.com/docs.json",
     "theme": "mint",
-    "name": "Mint Starter Kit",
+    "name": "Kamino",
     "colors": {
-        "primary": "#17304b",
-        "light": "#07C983",
-        "dark": "#15803D"
+        "primary": "#49AFE9",
+        "light": "#49AFE9",
+        "dark": "#49AFE9"
     },
+    
     "favicon": "/favicon.svg",
     "navigation": {
         "tabs": [
             {
                 "tab": "Welcome to Kamino",
-                "icon": "code",
                 "pages": [
                     "index"
+                ]
+            },
+            {
+                "tab": "API Reference",
+                "groups": [
+                    {
+                        "group": "API Documentation",
+                        "pages": [
+                            "api-reference/introduction"
+                        ]
+                    },
+        {
+          "group": "Endpoints",
+          "openapi": {
+            "source": "./openapi.json",
+            "directory": "api-reference"
+          }
+        }
+        ]},
+            {
+                "tab": "Quickstart",
+                "groups": [
+                    {
+                        "group": "Quickstart",
+                        "pages": [
+                            "quickstart/nextjs-example",
+                            "quickstart/react-example"
+                        ]
+                    }
                 ]
             },
             {
@@ -25,30 +54,6 @@
                         "pages": [
                             "kamino-sdks/lending",
                             "kamino-sdks/liquidity"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "API Reference",
-                "groups": [
-                    {
-                        "group": "API Documentation",
-                        "pages": [
-                            "api-reference/introduction"
-                        ],
-                      "openapi": "openapi.json"
-                    }
-                ]
-            },
-            {
-                "tab": "Quickstart",
-                "groups": [
-                    {
-                        "group": "Quickstart",
-                        "pages": [
-                            "quickstart/nextjs-example",
-                            "quickstart/react-example"
                         ]
                     }
                 ]
@@ -79,5 +84,18 @@
         "socials": {
             "github": "https://github.com/Kamino-Finance"
         }
-    }
+    },
+ "api": {
+   "playground": {
+     "display": "interactive"
+   },
+   "examples": {
+     "languages": ["curl",  "javascript"],
+     "defaults": "required"
+   },
+   "mdx": {
+      "auth": { 
+      }
+   }
+ }
 }
