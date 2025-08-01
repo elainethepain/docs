@@ -1,0 +1,206 @@
+---
+title: 'Kamino Liquidity SDK'
+description: "The official TypeScript SDK for interacting with Kamino's liquidity protocol and automated market making (AMM) features."
+---
+
+## Installation
+
+```bash
+npm install @kamino-finance/liquidity-sdk
+```
+
+## Quick Start
+
+```typescript
+import { KaminoLiquidity } from '@kamino-finance/liquidity-sdk';
+
+const liquidity = new KaminoLiquidity({
+  connection: connection, // Solana connection
+  wallet: wallet, // Wallet adapter
+  cluster: 'mainnet-beta'
+});
+```
+
+## Core Features
+
+### Add Liquidity
+
+```typescript
+// Add liquidity to a pool
+const addLiquidityTx = await liquidity.addLiquidity({
+  poolAddress: poolAddress,
+  tokenAAmount: new BN(1000000), // 1 token A
+  tokenBAmount: new BN(50000000), // 50 token B
+  slippageTolerance: 0.01 // 1%
+});
+
+await addLiquidityTx.confirm();
+```
+
+### Remove Liquidity
+
+```typescript
+// Remove liquidity from a pool
+const removeLiquidityTx = await liquidity.removeLiquidity({
+  poolAddress: poolAddress,
+  lpTokenAmount: new BN(100000), // LP tokens to burn
+  slippageTolerance: 0.01 // 1%
+});
+
+await removeLiquidityTx.confirm();
+```
+
+### Swap Tokens
+
+```typescript
+// Swap tokens using Kamino's liquidity pools
+const swapTx = await liquidity.swap({
+  poolAddress: poolAddress,
+  inputMint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+  outputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  inputAmount: new BN(1000000), // 1 input token
+  slippageTolerance: 0.01 // 1%
+});
+
+await swapTx.confirm();
+```
+
+### Get Pool Info
+
+```typescript
+// Get information about a liquidity pool
+const poolInfo = await liquidity.getPoolInfo(poolAddress);
+
+console.log('Pool Address:', poolInfo.address);
+console.log('Token A:', poolInfo.tokenA);
+console.log('Token B:', poolInfo.tokenB);
+console.log('LP Supply:', poolInfo.lpSupply);
+console.log('Reserves:', poolInfo.reserves);
+```
+
+## API Reference
+
+### Classes
+
+- `KaminoLiquidity` - Main SDK class
+- `LiquidityPool` - Individual pool operations
+- `LiquidityPosition` - Position management
+
+### Methods
+
+- `addLiquidity()` - Add liquidity to pools
+- `removeLiquidity()` - Remove liquidity from pools
+- `swap()` - Swap tokens through pools
+- `getPoolInfo()` - Get pool information
+- `getPositionInfo()` - Get user position information
+- `getPools()` - Get all available pools
+- `calculateSwapOutput()` - Calculate swap output amount
+
+## Examples
+
+### Complete Liquidity Flow
+
+```typescript
+import { KaminoLiquidity } from '@kamino-finance/liquidity-sdk';
+
+async function liquidityExample() {
+  const liquidity = new KaminoLiquidity({
+    connection,
+    wallet,
+    cluster: 'mainnet-beta'
+  });
+
+  // 1. Get pool information
+  const poolInfo = await liquidity.getPoolInfo(poolAddress);
+  console.log('Pool:', poolInfo);
+
+  // 2. Add liquidity
+  const addTx = await liquidity.addLiquidity({
+    poolAddress: poolAddress,
+    tokenAAmount: new BN(1000000),
+    tokenBAmount: new BN(50000000),
+    slippageTolerance: 0.01
+  });
+  await addTx.confirm();
+
+  // 3. Get position info
+  const position = await liquidity.getPositionInfo(wallet.publicKey, poolAddress);
+  console.log('LP Tokens:', position.lpTokens);
+
+  // 4. Swap tokens
+  const swapTx = await liquidity.swap({
+    poolAddress: poolAddress,
+    inputMint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+    outputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+    inputAmount: new BN(500000), // 0.5 tokens
+    slippageTolerance: 0.01
+  });
+  await swapTx.confirm();
+}
+```
+
+## Advanced Features
+
+### Position Management
+
+```typescript
+// Get all user positions
+const positions = await liquidity.getUserPositions(wallet.publicKey);
+
+positions.forEach(position => {
+  console.log(`Pool: ${position.poolAddress}`);
+  console.log(`LP Tokens: ${position.lpTokens}`);
+  console.log(`Value: $${position.value}`);
+});
+```
+
+### Price Calculations
+
+```typescript
+// Calculate swap output before executing
+const swapOutput = await liquidity.calculateSwapOutput({
+  poolAddress: poolAddress,
+  inputMint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+  outputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  inputAmount: new BN(1000000)
+});
+
+console.log('Expected output:', swapOutput.amount);
+console.log('Price impact:', swapOutput.priceImpact);
+```
+
+## Error Handling
+
+```typescript
+try {
+  const tx = await liquidity.addLiquidity(addLiquidityParams);
+  await tx.confirm();
+} catch (error) {
+  if (error.message.includes('insufficient balance')) {
+    console.error('Insufficient token balance');
+  } else if (error.message.includes('slippage')) {
+    console.error('Slippage tolerance exceeded');
+  } else {
+    console.error('Transaction failed:', error.message);
+  }
+}
+```
+
+## Configuration
+
+### Environment Setup
+
+```typescript
+const liquidity = new KaminoLiquidity({
+  connection: new Connection('https://api.mainnet-beta.solana.com'),
+  wallet: walletAdapter,
+  cluster: 'mainnet-beta', // or 'devnet'
+  commitment: 'confirmed'
+});
+```
+
+## Support
+
+- [GitHub Repository](https://github.com/Kamino-Finance/kliquidity-sdk)
+- [API Documentation](/api-reference)
+- [Discord Community](https://discord.gg/kamino) 

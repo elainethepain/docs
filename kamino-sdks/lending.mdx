@@ -1,0 +1,150 @@
+---
+title: 'Kamino Lending SDK'
+description: "The official TypeScript SDK for interacting with Kamino's lending protocol."
+---
+## Installation
+
+```bash
+npm install @kamino-finance/lending-sdk
+```
+
+## Quick Start
+
+```typescript
+import { KaminoLending } from '@kamino-finance/lending-sdk';
+
+const lending = new KaminoLending({
+  connection: connection, // Solana connection
+  wallet: wallet, // Wallet adapter
+  cluster: 'mainnet-beta'
+});
+```
+
+## Core Features
+
+### Deposit Assets
+
+```typescript
+// Deposit tokens into a lending vault
+const depositTx = await lending.deposit({
+  mint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+  amount: new BN(1000000), // 1 token (6 decimals)
+  vault: vaultAddress
+});
+
+await depositTx.confirm();
+```
+
+### Borrow Assets
+
+```typescript
+// Borrow against deposited collateral
+const borrowTx = await lending.borrow({
+  mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', // USDC
+  amount: new BN(50000000), // 50 USDC
+  collateralMint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So'
+});
+
+await borrowTx.confirm();
+```
+
+### Get Account Info
+
+```typescript
+// Get user's lending account information
+const accountInfo = await lending.getAccountInfo(userPublicKey);
+
+console.log('Deposits:', accountInfo.deposits);
+console.log('Borrows:', accountInfo.borrows);
+console.log('Health Factor:', accountInfo.healthFactor);
+```
+
+## API Reference
+
+### Classes
+
+- `KaminoLending` - Main SDK class
+- `LendingVault` - Individual vault operations
+- `LendingMarket` - Market data and operations
+
+### Methods
+
+- `deposit()` - Deposit assets into lending vaults
+- `withdraw()` - Withdraw deposited assets
+- `borrow()` - Borrow against collateral
+- `repay()` - Repay borrowed assets
+- `getAccountInfo()` - Get user account information
+- `getVaultInfo()` - Get vault information
+- `getMarketInfo()` - Get market data
+
+## Examples
+
+### Complete Lending Flow
+
+```typescript
+import { KaminoLending } from '@kamino-finance/lending-sdk';
+
+async function lendingExample() {
+  const lending = new KaminoLending({
+    connection,
+    wallet,
+    cluster: 'mainnet-beta'
+  });
+
+  // 1. Deposit collateral
+  const depositTx = await lending.deposit({
+    mint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+    amount: new BN(1000000),
+    vault: vaultAddress
+  });
+  await depositTx.confirm();
+
+  // 2. Check account health
+  const accountInfo = await lending.getAccountInfo(wallet.publicKey);
+  console.log('Health Factor:', accountInfo.healthFactor);
+
+  // 3. Borrow USDC
+  const borrowTx = await lending.borrow({
+    mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+    amount: new BN(25000000), // 25 USDC
+    collateralMint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So'
+  });
+  await borrowTx.confirm();
+}
+```
+
+## Error Handling
+
+```typescript
+try {
+  const tx = await lending.deposit(depositParams);
+  await tx.confirm();
+} catch (error) {
+  if (error.message.includes('insufficient funds')) {
+    console.error('Insufficient balance for deposit');
+  } else if (error.message.includes('health factor')) {
+    console.error('Operation would make account unhealthy');
+  } else {
+    console.error('Transaction failed:', error.message);
+  }
+}
+```
+
+## Configuration
+
+### Environment Setup
+
+```typescript
+const lending = new KaminoLending({
+  connection: new Connection('https://api.mainnet-beta.solana.com'),
+  wallet: walletAdapter,
+  cluster: 'mainnet-beta', // or 'devnet'
+  commitment: 'confirmed'
+});
+```
+
+## Support
+
+- [GitHub Repository](https://github.com/Kamino-Finance/klend-sdk)
+- [API Documentation](/api-reference)
+- [Discord Community](https://discord.gg/kamino) 

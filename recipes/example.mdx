@@ -1,0 +1,388 @@
+---
+title: 'Recipes & Examples'
+description: 'Common integration patterns and code examples for Kamino API'
+---
+
+## Authentication Patterns
+
+### API Key Authentication
+
+```javascript
+// Set up authenticated requests
+const headers = {
+  'Authorization': `Bearer ${API_KEY}`,
+  'Content-Type': 'application/json'
+};
+
+const response = await fetch('https://api.kamino.finance/v2/endpoint', {
+  headers
+});
+```
+
+### Rate Limiting
+
+```javascript
+// Implement rate limiting for API calls
+class RateLimitedAPI {
+  constructor(requestsPerMinute = 60) {
+    this.requestsPerMinute = requestsPerMinute;
+    this.requests = [];
+  }
+
+  async makeRequest(url, options = {}) {
+    // Clean old requests
+    const now = Date.now();
+    this.requests = this.requests.filter(time => now - time < 60000);
+
+    // Check rate limit
+    if (this.requests.length >= this.requestsPerMinute) {
+      const oldestRequest = this.requests[0];
+      const waitTime = 60000 - (now - oldestRequest);
+      await new Promise(resolve => setTimeout(resolve, waitTime));
+    }
+
+    // Make request
+    this.requests.push(now);
+    return fetch(url, options);
+  }
+}
+```
+
+## Data Fetching Patterns
+
+### Fetch with Retry Logic
+
+```javascript
+async function fetchWithRetry(url, options = {}, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch(url, options);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      return await response.json();
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      
+      // Exponential backoff
+      const delay = Math.pow(2, i) * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+// Usage
+const data = await fetchWithRetry('https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history');
+```
+
+### Batch Requests
+
+```javascript
+// Fetch multiple endpoints in parallel
+async function fetchBatch(endpoints) {
+  const promises = endpoints.map(endpoint => 
+    fetch(endpoint).then(res => res.json())
+  );
+  
+  return Promise.all(promises);
+}
+
+// Usage
+const endpoints = [
+  'https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history',
+  'https://api.kamino.finance/prices/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+  'https://api.kamino.finance/whirlpools/pools'
+];
+
+const [yields, prices, pools] = await fetchBatch(endpoints);
+```
+
+## Error Handling Patterns
+
+### Comprehensive Error Handler
+
+```javascript
+class KaminoAPIError extends Error {
+  constructor(message, status, endpoint) {
+    super(message);
+    this.name = 'KaminoAPIError';
+    this.status = status;
+    this.endpoint = endpoint;
+  }
+}
+
+async function handleAPIError(response, endpoint) {
+  if (!response.ok) {
+    let errorMessage = `API request failed: ${response.status}`;
+    
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorMessage;
+    } catch {
+      // If response isn't JSON, use default message
+    }
+    
+    throw new KaminoAPIError(errorMessage, response.status, endpoint);
+  }
+  
+  return response;
+}
+
+// Usage
+try {
+  const response = await fetch('https://api.kamino.finance/endpoint');
+  await handleAPIError(response, '/endpoint');
+  const data = await response.json();
+} catch (error) {
+  if (error instanceof KaminoAPIError) {
+    console.error(`API Error (${error.status}): ${error.message}`);
+  } else {
+    console.error('Network error:', error.message);
+  }
+}
+```
+
+## Data Processing Patterns
+
+### Transform API Responses
+
+```javascript
+// Transform raw API data into a more usable format
+function transformStakingData(rawData) {
+  return rawData.map(item => ({
+    apy: parseFloat(item.apy),
+    epoch: item.epoch,
+    startTime: new Date(item.startBlockTime),
+    endTime: new Date(item.endBlockTime),
+    formattedApy: `${(parseFloat(item.apy) * 100).toFixed(2)}%`
+  }));
+}
+
+// Usage
+const rawData = await fetch('https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history');
+const transformedData = transformStakingData(rawData);
+```
+
+### Cache API Responses
+
+```javascript
+class APICache {
+  constructor(ttl = 5 * 60 * 1000) { // 5 minutes default
+    this.cache = new Map();
+    this.ttl = ttl;
+  }
+
+  async get(key, fetcher) {
+    const cached = this.cache.get(key);
+    
+    if (cached && Date.now() - cached.timestamp < this.ttl) {
+      return cached.data;
+    }
+    
+    const data = await fetcher();
+    this.cache.set(key, {
+      data,
+      timestamp: Date.now()
+    });
+    
+    return data;
+  }
+}
+
+// Usage
+const cache = new APICache();
+
+const data = await cache.get('staking-yields', async () => {
+  const response = await fetch('https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history');
+  return response.json();
+});
+```
+
+## React Hooks
+
+### Custom Hook for API Data
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function useKaminoAPI(endpoint, options = {}) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function fetchData() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const response = await fetch(endpoint, options);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (!cancelled) {
+          setData(result);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err.message);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [endpoint]);
+
+  return { data, loading, error };
+}
+
+// Usage
+function StakingYields() {
+  const { data, loading, error } = useKaminoAPI(
+    'https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history'
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!data) return <div>No data</div>;
+
+  return (
+    <div>
+      {data.map(item => (
+        <div key={item.epoch}>
+          Epoch {item.epoch}: {(parseFloat(item.apy) * 100).toFixed(2)}% APY
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+## TypeScript Patterns
+
+### Type Definitions
+
+```typescript
+interface StakingYield {
+  apy: string;
+  epoch: number;
+  startBlockTime: string;
+  endBlockTime: string;
+}
+
+interface APIResponse<T> {
+  data: T;
+  status: 'success' | 'error';
+  message?: string;
+}
+
+interface APIError {
+  message: string;
+  status: number;
+  endpoint: string;
+}
+```
+
+### Typed API Client
+
+```typescript
+class KaminoAPIClient {
+  private baseURL: string;
+  private apiKey?: string;
+
+  constructor(baseURL: string, apiKey?: string) {
+    this.baseURL = baseURL;
+    this.apiKey = apiKey;
+  }
+
+  private async request<T>(endpoint: string): Promise<T> {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json'
+    };
+
+    if (this.apiKey) {
+      headers['Authorization'] = `Bearer ${this.apiKey}`;
+    }
+
+    const response = await fetch(`${this.baseURL}${endpoint}`, { headers });
+    
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
+    return response.json();
+  }
+
+  async getStakingYields(tokenMint: string): Promise<StakingYield[]> {
+    return this.request<StakingYield[]>(`/staking-yields/tokens/${tokenMint}/history`);
+  }
+}
+
+// Usage
+const client = new KaminoAPIClient('https://api.kamino.finance');
+const yields = await client.getStakingYields('mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So');
+```
+
+## Best Practices
+
+### Environment Configuration
+
+```javascript
+// config.js
+const config = {
+  apiBaseURL: process.env.KAMINO_API_URL || 'https://api.kamino.finance',
+  apiKey: process.env.KAMINO_API_KEY,
+  rateLimit: parseInt(process.env.KAMINO_RATE_LIMIT) || 60,
+  timeout: parseInt(process.env.KAMINO_TIMEOUT) || 10000
+};
+
+export default config;
+```
+
+### Logging and Monitoring
+
+```javascript
+class APILogger {
+  static logRequest(endpoint, method, duration) {
+    console.log(`[API] ${method} ${endpoint} - ${duration}ms`);
+  }
+
+  static logError(endpoint, error) {
+    console.error(`[API Error] ${endpoint}:`, error);
+  }
+}
+
+// Usage in fetch wrapper
+const startTime = Date.now();
+try {
+  const response = await fetch(endpoint);
+  const duration = Date.now() - startTime;
+  APILogger.logRequest(endpoint, 'GET', duration);
+  return response;
+} catch (error) {
+  APILogger.logError(endpoint, error);
+  throw error;
+}
+```
+
+## Next Steps
+
+- Explore the [API Reference](/api-reference) for complete endpoint documentation
+- Check out the [SDK documentation](/kamino-sdks) for language-specific libraries
+- Join the [Discord community](https://discord.gg/kamino) for support 

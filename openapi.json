@@ -21,7 +21,7 @@
   },
   "servers": [
     {
-      "url": "api.kamino.finance",
+      "url": "https://api.kamino.finance",
       "variables": {}
     }
   ],
@@ -367,7 +367,36 @@
         "tags": [
           "Staking"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mint",
+            "description": "token address",
+            "schema": {
+              "type": "string",
+              "example": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "timestamp",
+            "schema": {
+              "type": "string",
+              "example": "2024-01-01T00:00Z"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "timestamp",
+            "schema": {
+              "type": "string",
+              "example": "2024-02-01T01:00Z"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -405,34 +434,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "mint",
-          "description": "token address",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "in": "query",
-          "name": "start",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "query",
-          "name": "end",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/staking-yields/tokens/{mint}/history/median": {
       "get": {
@@ -442,7 +444,18 @@
         "tags": [
           "Staking"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mint",
+            "description": "token address",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -500,18 +513,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "mint",
-          "description": "token address",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ]
+      }
     },
     "/yields/{source}/history": {
       "get": {
@@ -521,7 +523,18 @@
         "tags": [
           "Staking"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "source",
+            "description": "pool address",
+            "schema": {
+              "type": "string",
+              "example": "5BUwFW4nRbftYTDMbgxykoFWqWHPzahFSNAaaaJtVKsq"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -550,18 +563,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "source",
-          "description": "pool address",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ]
+      }
     },
     "/strategies": {
       "get": {
@@ -697,7 +699,45 @@
         "tags": [
           "Staking"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mint",
+            "description": "token address",
+            "schema": {
+              "type": "string",
+              "example": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "timestamp",
+            "schema": {
+              "type": "string",
+              "example": "2024-01-01T00:00Z"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "timestamp",
+            "schema": {
+              "type": "string",
+              "example": "2024-02-01T01:00Z"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interpolate",
+            "description": "interpolation flag",
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -751,34 +791,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "mint",
-          "description": "token address",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "in": "query",
-          "name": "start",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "query",
-          "name": "end",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/strategies/enabled": {
       "get": {
@@ -788,7 +801,17 @@
         "tags": [
           "Strategies"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "env",
+            "description": "environment (mainnet-beta[default],devnet,localnet,testnet)",
+            "schema": {
+              "type": "string",
+              "example": "mainnet-beta"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -878,17 +901,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "query",
-          "name": "env",
-          "description": "variables allowed: mainnet-beta, devnet, localnet, testnet",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/strategies/{strategy-pubkey}/metrics": {
       "get": {
@@ -898,7 +911,27 @@
         "tags": [
           "Strategies"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "strategy-pubkey",
+            "description": "Strategy public key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ByXB4xCxVhmUEmQj3Ut7byZ1Hbva1zhKjaVcv3jBMN7E"
+            }
+          },
+          {
+            "in": "query",
+            "name": "env",
+            "description": "environment (mainnet-beta[default],devnet,localnet,testnet)",
+            "schema": {
+              "type": "string",
+              "example": "mainnet-beta"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -989,26 +1022,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "query",
-          "name": "env",
-          "description": "variables allowed: mainnet-beta, devnet, localnet",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "path",
-          "name": "strategy-pubkey",
-          "description": "strategy public key",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ]
+      }
     },
     "/strategies/metrics": {
       "get": {
@@ -1018,31 +1032,32 @@
         "tags": [
           "Strategies"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "env",
+            "description": "environment (mainnet-beta[default],devnet,localnet,testnet)",
+            "schema": {
+              "type": "string",
+              "example": "mainnet-beta"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "status filter (IGNORED)",
+            "schema": {
+              "type": "string",
+              "example": "IGNORED"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "query",
-          "name": "env",
-          "description": "variables allowed: mainnet-beta, devnet, localnet",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "query",
-          "name": "status",
-          "description": "variables allowed: IGNORED",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/strategies/rewards": {
       "get": {
@@ -1052,23 +1067,23 @@
         "tags": [
           "Strategies"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "env",
+            "description": "environment (mainnet-beta[default],devnet,localnet,testnet)",
+            "schema": {
+              "type": "string",
+              "example": "mainnet-beta"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "query",
-          "name": "env",
-          "description": "variables allowed: mainnet-beta, devnet, localnet",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/strategies/{strategy-pubkey}/rewards": {
       "get": {
@@ -1078,48 +1093,49 @@
         "tags": [
           "Strategies"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "strategy-pubkey",
+            "description": "Strategy public key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ByXB4xCxVhmUEmQj3Ut7byZ1Hbva1zhKjaVcv3jBMN7E"
+            }
+          },
+          {
+            "in": "query",
+            "name": "env",
+            "description": "environment (mainnet-beta[default],devnet,localnet,testnet)",
+            "schema": {
+              "type": "string",
+              "example": "mainnet-beta"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "start timestamp",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "end timestamp",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "strategy-pubkey",
-          "description": "strategy public key",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "in": "query",
-          "name": "env",
-          "description": "variables allowed: mainnet-beta, devnet, localnet",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "query",
-          "name": "start",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "in": "query",
-          "name": "end",
-          "description": "timestamp",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/strategies/shareholders/{shareholder-pubkey}/rewards/history": {
       "get": {
