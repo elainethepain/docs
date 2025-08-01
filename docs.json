@@ -65,7 +65,6 @@
                     {
                         "group": "Recipes",
                         "pages": [
-                            "recipes/example",
                             "recipes/example"
                         ]
                     }

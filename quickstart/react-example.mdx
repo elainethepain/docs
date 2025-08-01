@@ -1,0 +1,76 @@
+---
+title: 'React Example'
+description: 'Learn how to integrate Kamino API with React'
+---
+
+## Coming Soon
+
+This guide will show you how to:
+- Set up a React project
+- Install and configure the Kamino SDK
+- Make API calls to Kamino endpoints
+- Handle state management with React hooks
+- Build a complete example application
+
+## Prerequisites
+
+- Node.js 18+ installed
+- Basic knowledge of React
+- Kamino API key (optional for public endpoints)
+
+## Quick Setup
+
+```bash
+npx create-react-app kamino-react-example
+cd kamino-react-example
+npm install @kamino-finance/sdk
+```
+
+## Example Code
+
+```javascript
+// src/components/KaminoData.js
+import { useState, useEffect } from 'react';
+
+function KaminoData() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://api.kamino.finance/staking-yields/tokens/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/history?start=2024-01-01T00:00Z&end=2024-02-01T01:00Z');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (!data) return <div>No data available</div>;
+
+  return (
+    <div>
+      <h2>Kamino Staking Yields</h2>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+}
+
+export default KaminoData;
+```
+
+## Next Steps
+
+This example will be expanded with:
+- Complete project structure
+- Error handling with React Error Boundaries
+- TypeScript support
+- Custom hooks for API calls
+- State management with Context or Redux 
