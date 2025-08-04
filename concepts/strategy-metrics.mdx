@@ -1,0 +1,152 @@
+---
+title: "Strategy Metrics"
+description: "Understanding TVL, APY, APR, and performance metrics on Kamino"
+---
+
+
+<div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+## Overview
+
+Strategy metrics are essential for understanding the performance and health of Kamino's various products. These metrics help users make informed decisions about their investments and risk management.
+
+## Key Metrics Explained
+
+### Total Value Locked (TVL)
+
+TVL represents the total value of assets locked in Kamino's protocols.
+
+**What it tells you:**
+- **Protocol Size**: Overall scale and adoption
+- **Market Confidence**: User trust in the protocol
+- **Liquidity Depth**: Available liquidity for transactions
+- **Growth Trends**: Protocol expansion over time
+
+### Annual Percentage Yield (APY)
+
+APY represents the annualized return on investment, including compound interest.
+
+**Types of APY:**
+- **Supply APY**: Interest earned on supplied assets
+- **Borrow APY**: Interest paid on borrowed assets
+- **Net APY**: Difference between earning and borrowing rates
+- **Strategy APY**: Returns from automated strategies
+
+### Annual Percentage Rate (APR)
+
+APR represents the simple annual interest rate without compounding.
+
+**When to use APR vs APY:**
+- **APR**: For simple interest calculations
+- **APY**: For compound interest scenarios
+- **Comparison**: APY is typically higher than APR due to compounding
+
+## Performance Metrics
+
+### Utilization Rate
+
+The percentage of supplied assets that are currently borrowed.
+
+**Impact on Rates:**
+- **Low Utilization**: Lower borrow rates, higher supply rates
+- **High Utilization**: Higher borrow rates, lower supply rates
+- **Optimal Range**: 60-80% typically provides balanced rates
+
+### Health Factor
+
+A measure of position safety and liquidation risk.
+
+**Health Factor Ranges:**
+- **> 2.0**: Very safe, minimal risk
+- **1.5 - 2.0**: Safe, good buffer
+- **1.0 - 1.5**: Caution zone
+- **< 1.0**: At risk of liquidation
+
+### Net APY
+
+The difference between what you earn and what you pay.
+
+**Calculation:**
+```
+Net APY = Supply APY - Borrow APY
+```
+
+**Interpretation:**
+- **Positive Net APY**: Profitable position
+- **Negative Net APY**: Unprofitable position
+- **Zero Net APY**: Break-even point
+
+## Strategy-Specific Metrics
+
+### Multiply Metrics
+
+#### Leverage Ratio
+- **Current Leverage**: Your position's current leverage
+- **Max Leverage**: Maximum allowed leverage
+- **Optimal Leverage**: Best leverage for your risk tolerance
+
+#### Liquidation Distance
+- **Current Distance**: How far from liquidation
+- **Buffer Zone**: Safe distance from liquidation threshold
+- **Risk Level**: Low, medium, or high risk
+
+### Liquidity Vault Metrics
+
+#### Impermanent Loss
+- **Current IL**: Current impermanent loss
+- **IL Protection**: Available protection mechanisms
+- **IL Recovery**: Strategies to recover from IL
+
+#### Pool Performance
+- **Pool APY**: Overall pool returns
+- **Volume**: Trading volume in the pool
+- **Fees Earned**: Trading fees collected
+
+## Real-Time Data Sources
+
+### Kamino Analytics Dashboard
+- **Live Metrics**: Real-time TVL, APY, and utilization
+- **Historical Data**: Long-term performance trends
+- **Market Analysis**: Comparative market data
+
+### Risk Dashboard
+- **Position Health**: Individual position metrics
+- **Market Risk**: Overall market risk indicators
+- **Liquidation Risk**: System-wide liquidation metrics
+
+## Best Practices
+
+### Monitoring Metrics
+1. **Daily Checks**: Monitor key metrics regularly
+2. **Trend Analysis**: Look for patterns over time
+3. **Comparative Analysis**: Compare with market benchmarks
+4. **Risk Assessment**: Use metrics to assess risk
+
+### Decision Making
+1. **APY vs Risk**: Balance returns with risk tolerance
+2. **Utilization Impact**: Understand how utilization affects rates
+3. **Health Factor**: Keep health factor above 1.5
+4. **Diversification**: Don't over-concentrate in single strategies
+
+## Advanced Metrics
+
+### Sharpe Ratio
+- **Risk-Adjusted Returns**: Returns relative to risk
+- **Volatility**: Price fluctuation measures
+- **Optimal Ratios**: Target ratios for different strategies
+
+### Maximum Drawdown
+- **Historical Losses**: Worst historical losses
+- **Recovery Time**: Time to recover from losses
+- **Risk Tolerance**: Align with your risk tolerance
+
+### Correlation Analysis
+- **Asset Correlations**: How assets move together
+- **Diversification Benefits**: Reducing portfolio risk
+- **Strategy Selection**: Choosing complementary strategies
+
+## Next Steps
+
+- Learn about [Risk Management](/concepts/risk-management)
+- Understand [Liquidation](/concepts/liquidation)
+- Explore [Position Management](/concepts/position-management) 

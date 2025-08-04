@@ -1,0 +1,106 @@
+---
+title: "Liquidation"
+description: "How liquidations work in Kamino's system and the Liquidation Analysis Suite"
+---
+
+<div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+## Overview
+
+Liquidation is a risk management mechanism that protects the Kamino protocol and its users. When positions become undercollateralized, they can be liquidated to maintain system solvency.
+
+## How Liquidations Work
+
+### Liquidation Triggers
+
+A position can be liquidated when:
+
+- **Health Factor < 1**: The position's health factor drops below the liquidation threshold
+- **Undercollateralization**: The value of borrowed assets exceeds the allowed collateral ratio
+- **Oracle Price Changes**: Significant price movements that affect collateral value
+
+### Liquidation Process
+
+1. **Detection**: The protocol continuously monitors all positions
+2. **Liquidation Call**: Liquidators can call the liquidation function
+3. **Partial Liquidation**: Up to 50% of the position can be liquidated
+4. **Liquidation Bonus**: Liquidators receive a bonus for performing liquidations
+
+## Liquidation Analysis Suite
+
+Kamino's **Multiply Liquidation Analysis Suite** provides sophisticated risk assessment tools for users to understand their position risk with real-time data and simulations.
+
+### Core Features
+
+The suite consists of 4 core sections:
+
+#### 1. Overall Stats
+- **Average Leverage**: Market-wide leverage statistics
+- **Average LTV**: Loan-to-Value ratios across all users
+- **Average Net APY**: Current profitability metrics
+- **Market Risk Appetite**: Indicators of overall market sentiment
+
+#### 2. My Risk Summary
+- **Personal Position Overview**: Your specific risk metrics
+- **Net APY Calculation**: Current profitability of your position
+- **Time to Liquidation**: Simulated liquidation timeline
+- **Risk Assessment**: Real-time position health evaluation
+
+#### 3. Interest Rate & Utilization Simulation
+- **Interactive Risk Modeling**: Adjust parameters to test scenarios
+- **LST APY vs Borrow APY**: Compare earning vs borrowing rates
+- **Utilization Impact**: See how utilization affects rates
+- **90D PnL Projections**: Forward-looking profitability estimates
+- **Custom Scenarios**: Test different leverage levels and utilization rates
+
+#### 4. Historical Utilization
+- **1-Year Historical Data**: Long-term utilization patterns
+- **Rate Stability Analysis**: How quickly spikes flatten
+- **Market Behavior**: Understanding utilization cycles
+- **Coming Soon**: 30D, 90D, 180D, 360D average utilization metrics
+
+### Interest Rate Risk Explained
+
+For SOL Multiply positions, the primary risk is **interest rate risk**:
+
+- **SOL Borrow Rate Spikes**: When borrow rates exceed LST APY
+- **Net APY Impact**: Reduced profitability when rates are unfavorable
+- **Liquidation Risk**: Extreme scenarios where positions become unprofitable
+
+### Risk Quantification
+
+The Liquidation Analysis Suite answers critical questions:
+
+- **How extreme do rates need to be** for liquidation risk?
+- **What's my time to liquidation** under different scenarios?
+- **How does utilization affect** my position's profitability?
+- **What historical patterns** should I consider?
+
+## Best Practices
+
+### Risk Management
+1. **Monitor Health Factor**: Keep above 1.5 for safety
+2. **Use Liquidation Analysis Suite**: Regularly assess position risk
+3. **Understand Rate Dynamics**: Know how utilization affects rates
+4. **Diversify Strategies**: Don't over-concentrate in single positions
+
+### Using the Analysis Suite
+1. **Check Overall Stats**: Understand market conditions
+2. **Review Personal Risk**: Monitor your specific position
+3. **Run Simulations**: Test different scenarios
+4. **Study Historical Data**: Learn from market patterns
+
+## Accessing the Suite
+
+The Liquidation Analysis Suite is available to all Multiply users and provides:
+
+- **Real-time Data**: Live market information
+- **Interactive Simulations**: Test various scenarios
+- **Historical Context**: Long-term market analysis
+- **Risk Quantification**: Precise risk measurements
+
+## Next Steps
+
+- Learn about [Risk Management](/concepts/risk-management)
+- Understand [Interest Rate Model](/concepts/interest-rate-model)
+- Explore [Position Management](/concepts/position-management) 

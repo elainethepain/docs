@@ -1,0 +1,190 @@
+---
+title: "Interest Rate Model"
+description: "How interest rates are calculated and managed"
+---
+
+<div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+Interest rate models are mathematical frameworks that determine how borrowing and lending rates are calculated in DeFi protocols. Understanding these models is crucial for predicting costs, optimizing strategies, and managing risk in Kamino's ecosystem.
+
+## How Interest Rate Models Work
+
+### Basic Principles
+
+**Supply and Demand Dynamics**
+- Rates adjust based on utilization
+- Higher utilization = higher rates
+- Lower utilization = lower rates
+- Market equilibrium determines rates
+
+**Utilization Rate**
+- Percentage of supplied assets being borrowed
+- Key driver of interest rate changes
+- Real-time calculation and updates
+
+**Rate Calculation**
+- Base rate + utilization premium
+- Dynamic adjustment mechanisms
+- Protocol-specific parameters
+
+## Kamino's Interest Rate Model
+
+### Core Components
+
+**Base Rate**
+- Minimum rate when utilization is low
+- Protocol governance parameter
+- Risk-free rate approximation
+
+**Utilization Premium**
+- Additional rate based on utilization
+- Exponential growth at high utilization
+- Encourages supply during high demand
+
+**Rate Ceiling**
+- Maximum rate to prevent excessive costs
+- Protects borrowers from extreme rates
+- Protocol safety mechanism
+
+### Mathematical Framework
+
+**Rate Formula**
+```
+Rate = Base Rate + (Utilization Rate × Multiplier)
+```
+
+**Utilization Calculation**
+```
+Utilization = Total Borrowed / Total Supplied
+```
+
+**Dynamic Adjustment**
+- Rates update continuously
+- Real-time market conditions
+- Automated rate determination
+
+## Rate Determinants
+
+### Market Factors
+
+**Asset Demand**
+- Higher borrowing demand = higher rates
+- Seasonal patterns and trends
+- Market sentiment impact
+
+**Supply Availability**
+- More supply = lower rates
+- Supply constraints = higher rates
+- Liquidity provider incentives
+
+**Volatility Impact**
+- Market volatility affects rates
+- Risk premium adjustments
+- Dynamic risk assessment
+
+### Protocol Factors
+
+**Governance Parameters**
+- Base rate adjustments
+- Multiplier changes
+- Rate ceiling modifications
+
+**Risk Management**
+- Collateral quality requirements
+- Liquidation thresholds
+- Reserve requirements
+
+**Incentive Mechanisms**
+- Supply incentives during high demand
+- Borrowing incentives during low demand
+- Market equilibrium maintenance
+
+## Rate Types and Structures
+
+### Variable Rates
+
+**Dynamic Adjustment**
+- Rates change with utilization
+- Real-time market pricing
+- No fixed rate guarantees
+
+**Advantages**
+- Market-driven pricing
+- Efficient capital allocation
+- Automatic rate optimization
+
+**Disadvantages**
+- Rate uncertainty
+- Potential for high rates
+- Planning challenges
+
+### Fixed Rate Products
+
+**Rate Stability**
+- Predictable borrowing costs
+- Fixed rate for term period
+- Hedging against rate volatility
+
+**Implementation**
+- Rate swap mechanisms
+- Fixed-rate lending pools
+- Rate hedging strategies
+
+## Rate Optimization Strategies
+
+### For Borrowers
+
+**Timing Optimization**
+- Borrow during low utilization
+- Monitor rate trends
+- Plan borrowing around rate cycles
+
+**Rate Arbitrage**
+- Borrow at lower rates
+- Lend at higher rates
+- Capture rate differentials
+
+**Hedging Strategies**
+- Use fixed-rate products
+- Hedge variable rate exposure
+- Manage rate risk
+
+### For Lenders
+
+**Supply Timing**
+- Supply during high utilization
+- Earn maximum rates
+- Monitor rate opportunities
+
+**Portfolio Optimization**
+- Diversify across assets
+- Balance risk and return
+- Optimize supply allocation
+
+## Risk Management
+
+### Rate Risk
+
+**Volatility Impact**
+- Rate spikes during stress
+- Sudden utilization changes
+- Market event responses
+
+**Mitigation Strategies**
+- Diversify borrowing sources
+- Use fixed-rate products
+- Maintain rate hedges
+
+### Liquidity Risk
+
+**Supply Constraints**
+- Limited supply availability
+- High utilization periods
+- Emergency borrowing needs
+
+**Management Approaches**
+- Maintain liquidity buffers
+- Monitor utilization trends
+- Plan for rate spikes
+
+Understanding interest rate models is essential for effective DeFi participation. By monitoring rates, optimizing timing, and managing rate risk, users can minimize borrowing costs and maximize lending returns in Kamino's ecosystem. 
