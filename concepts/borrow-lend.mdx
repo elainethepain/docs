@@ -1,0 +1,88 @@
+---
+title: "Borrow/Lend"
+---
+
+<div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+
+Borrowing and lending are the fundamental mechanics that power Kamino's DeFi protocol. Users can supply assets to earn interest and borrow against their collateral to access liquidity.
+
+## How It Works
+
+### Supplying Assets
+
+When you supply tokens to Kamino, they are transferred to the protocol's liquidity pools. These pools facilitate overcollateralized borrowing while allowing suppliers to earn interest on their digital assets.
+
+**Key Benefits:**
+- **Automatic Interest Accrual**: Supplied tokens automatically earn interest based on current market rates
+- **Collateral Usage**: Supplied assets can be used as collateral for borrowing
+- **Dynamic Rates**: Interest rates adjust based on market conditions and utilization
+
+### Borrowing Assets
+
+Borrowing on Kamino allows users to access liquidity while maintaining their position in supplied assets. The protocol uses an overcollateralized model to ensure system security.
+
+**Borrowing Process:**
+1. **Supply Collateral**: First, supply assets to the protocol
+2. **Check Borrow Capacity**: Your borrow capacity depends on your collateral value and borrow factors
+3. **Borrow Assets**: Access liquidity up to your available borrow capacity
+4. **Manage Position**: Monitor your health factor and manage your position
+
+## Interest Rate Model
+
+Interest rates on Kamino are determined by:
+
+- **Utilization Rate**: The proportion of assets currently borrowed vs. total supplied
+- **Market Conditions**: Dynamic rates that respond to supply and demand
+- **Governance Parameters**: Protocol-level settings that can be adjusted
+
+## Position Risk & Liquidations
+
+### Health Factor
+
+Your position's health factor determines liquidation risk:
+
+- **Health Factor > 1**: Safe position, no liquidation risk
+- **Health Factor = 1**: At liquidation threshold
+- **Health Factor < 1**: Position can be liquidated
+
+### Borrow Factors
+
+Different assets have different borrow factors, affecting how much you can borrow against your collateral. Higher borrow factors mean more borrowing capacity.
+
+## Cross & Isolated Modes
+
+Kamino offers two borrowing modes:
+
+### Cross Mode
+- Use all supplied assets as collateral
+- Higher borrowing capacity
+- More complex risk management
+
+### Isolated Mode
+- Use specific assets as collateral
+- Lower borrowing capacity
+- Simplified risk management
+
+## Fees
+
+### Supply Fees
+- **Interest Earned**: Suppliers earn interest on their supplied assets
+- **No Supply Fees**: No fees for supplying assets
+
+### Borrow Fees
+- **Interest Paid**: Borrowers pay interest on borrowed amounts
+- **Borrow Incentives**: Some assets offer borrowing incentives
+
+## Best Practices
+
+1. **Monitor Health Factor**: Keep your health factor above 1.5 for safety
+2. **Diversify Collateral**: Use multiple assets as collateral to reduce risk
+3. **Stay Informed**: Monitor market conditions and protocol updates
+4. **Use Risk Management**: Consider using isolated mode for simpler risk management
+
+## Next Steps
+
+- Learn about [Position Management](/concepts/position-management)
+- Understand [Risk Management](/concepts/risk-management)
+- Explore [Cross & Isolated Modes](/concepts/cross-isolated-modes) 

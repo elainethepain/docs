@@ -19,6 +19,29 @@
                 ]
             },
             {
+                "tab": "Concepts",
+                "groups": [
+                    {
+                        "group": "Core Concepts",
+                        "pages": [
+                            "concepts/index",
+                            "concepts/borrow-lend",
+                            "concepts/strategy-metrics",
+                            "concepts/fees-rewards",
+                            "concepts/oracle-security",
+                            "concepts/liquidity-provision",
+                            "concepts/yield-farming",
+                            "concepts/staking-yields",
+                            "concepts/cross-isolated-modes",
+                            "concepts/position-management",
+                            "concepts/risk-management",
+                            "concepts/interest-rate-model",
+                            "concepts/liquidation"
+                        ]
+                    }
+                ]
+            },
+            {
                 "tab": "API Reference",
                 "groups": [
                     {
