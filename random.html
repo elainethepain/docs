@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Levitating Crystal</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0d1b32;
+    }
+
+    svg {
+      width: 400px;
+      height: 200px;
+      display: block;
+    }
+
+    .diamond {
+      fill: url(#diamondGradient);
+      stroke: #00f2ff;
+      stroke-width: 0.8;
+      animation: levitate 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .reflection {
+      opacity: 0.1;
+      transform: scaleY(-1);
+      fill: url(#diamondGradient);
+      animation: reflectionFloat 3s ease-in-out infinite;
+    }
+
+    .wave {
+      fill: none;
+      stroke: #00f2ff;
+      stroke-width: 1;
+      opacity: 0.4;
+      stroke-dasharray: 6 4;
+      animation: waveMove 4s linear infinite;
+    }
+
+    @keyframes levitate {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes reflectionFloat {
+      0%, 100% { transform: scaleY(-1) translateY(0); }
+      50% { transform: scaleY(-1) translateY(10px); }
+    }
+
+    @keyframes waveMove {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+  </style>
+</head>
+<body>
+
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient for diamond -->
+  <defs>
+    <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2ff"/>
+      <stop offset="100%" stop-color="#9be7ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Levitating Diamond -->
+  <g transform="translate(200,90)">
+    <polygon class="diamond" points="0,-30 15,0 0,30 -15,0"/>
+  </g>
+
+  <!-- Reflection -->
+  <g transform="translate(200,140)">
+    <polygon class="reflection" points="0,-30 15,0 0,30 -15,0"/>
+  </g>
+
+  <!-- Stylized Water Ripples -->
+  <ellipse class="wave" cx="200" cy="160" rx="50" ry="6"/>
+  <ellipse class="wave" cx="200" cy="160" rx="70" ry="8"/>
+  <ellipse class="wave" cx="200" cy="160" rx="90" ry="10"/>
+</svg>
+
+</body>
+</html>

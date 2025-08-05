@@ -6,6 +6,56 @@ description: "Understanding TVL, APY, APR, and performance metrics on Kamino"
 
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div className="concept-coin" style={{
+      position: 'absolute',
+      top: '48%',
+      left: '46%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const StrategyMetricsCoin = (props) => (
+          <svg
+            width={140}
+            height={140}
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <radialGradient id="coinGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#fff4b3" />
+                <stop offset="100%" stopColor="#ffd700" />
+              </radialGradient>
+            </defs>
+            <circle
+              fill="url(#coinGradient)"
+              stroke="#ffe066"
+              strokeWidth={1.5}
+              cx={60}
+              cy={60}
+              r={35}
+            />
+          </svg>
+        );
+        return <StrategyMetricsCoin />;
+      })()}
+    </div>
+  </div>
+</div>
+
 ## Overview
 
 Strategy metrics are essential for understanding the performance and health of Kamino's various products. These metrics help users make informed decisions about their investments and risk management.
