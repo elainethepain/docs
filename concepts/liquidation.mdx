@@ -5,6 +5,92 @@ description: "How liquidations work in Kamino's system and the Liquidation Analy
 
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div className="concept-float" style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const LiquidationCrystal = (props) => (
+          <svg
+            width={180}
+            height={180}
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <linearGradient
+                id="diamondGrad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#00f2ff" />
+                <stop offset="100%" stopColor="#9be7ff" />
+              </linearGradient>
+            </defs>
+            <g transform="translate(60,45)">
+              <polygon
+                fill="url(#diamondGrad)"
+                stroke="#00f2ff"
+                strokeWidth={1.2}
+                points="0,-20 12,0 0,20 -12,0"
+              />
+            </g>
+            <g transform="translate(60,85)">
+              <polygon
+                opacity={0.15}
+                fill="url(#diamondGrad)"
+                points="0,-20 12,0 0,20 -12,0"
+                transform="scaleY(-1)"
+              />
+            </g>
+            <ellipse
+              fill="none"
+              stroke="#00f2ff"
+              strokeWidth={1}
+              opacity={0.4}
+              strokeDasharray="4 3"
+              cx={60}
+              cy={95}
+              rx={25}
+              ry={4}
+            />
+            <ellipse
+              fill="none"
+              stroke="#00f2ff"
+              strokeWidth={1}
+              opacity={0.25}
+              strokeDasharray="4 3"
+              cx={60}
+              cy={95}
+              rx={35}
+              ry={6}
+            />
+          </svg>
+        );
+        return <LiquidationCrystal />;
+      })()}
+    </div>
+  </div>
+</div>
+
 ## Overview
 
 Liquidation is a risk management mechanism that protects the Kamino protocol and its users. When positions become undercollateralized, they can be liquidated to maintain system solvency.

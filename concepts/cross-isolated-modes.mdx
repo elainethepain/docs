@@ -3,9 +3,76 @@ title: "Cross & Isolated Modes"
 
 ---
 
-Cross and isolated modes represent two different approaches to borrowing and lending in DeFi protocols. These modes determine how collateral is managed, risk is distributed, and positions are liquidated. Understanding the differences is crucial for effective risk management.
-
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const CrossIsolatedStars = (props) => (
+          <svg
+            width={300}
+            height={300}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00f2ff"/>
+                <stop offset="100%" stopColor="#9be7ff"/>
+              </linearGradient>
+              <linearGradient id="isolatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ffc0cb"/>
+                <stop offset="100%" stopColor="#ff85a2"/>
+              </linearGradient>
+            </defs>
+            
+            <polygon 
+              className="star" 
+              stroke="url(#starGradient)"
+              points="100,90 110,110 130,110 115,125 120,145 100,135 80,145 85,125 70,110 90,110"
+            />
+            <polygon 
+              className="star" 
+              stroke="url(#starGradient)"
+              points="150,60 160,80 180,80 165,95 170,115 150,105 130,115 135,95 120,80 140,80"
+            />
+            
+            <line className="line" x1="100" y1="90" x2="150" y2="60"/>
+            
+            <polygon 
+              className="star isolated" 
+              stroke="url(#isolatedGradient)"
+              points="300,100 310,120 330,120 315,135 320,155 300,145 280,155 285,135 270,120 290,120"
+            />
+          </svg>
+        );
+        return <CrossIsolatedStars />;
+      })()}
+    </div>
+  </div>
+</div>
+
+## Overview
+
+Cross and isolated modes represent two different approaches to borrowing and lending in DeFi protocols. These modes determine how collateral is managed, risk is distributed, and positions are liquidated. Understanding the differences is crucial for effective risk management.
 
 
 ### How Cross Mode Works
