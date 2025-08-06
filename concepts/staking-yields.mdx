@@ -2,9 +2,143 @@
 title: "Staking Yields"
 ---
 
-Staking yields represent the rewards earned by participants who lock their tokens to support network security and operations. In Kamino's ecosystem, staking yields come from various sources including validator rewards, protocol fees, and incentive programs.
-
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
+
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+          <div style={{
+        position: 'absolute',
+        top: '48%',
+        left: '40%',
+        transform: 'translate(-50%, -50%)',
+        zIndex: 10
+      }}>
+        {(() => {
+          const StakingYieldsBarChart = (props) => (
+            <svg
+              width={300}
+              height={300}
+              viewBox="0 0 400 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              {...props}
+            >
+              <defs>
+                <linearGradient id="barGradStaking" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#00f2ff"/>
+                  <stop offset="100%" stopColor="#1188ff"/>
+                </linearGradient>
+              </defs>
+              
+              <rect 
+                x="100" y="110" width="30" height="40" rx="4"
+                fill="url(#barGradStaking)"
+                stroke="#00f2ff"
+                strokeWidth="1.2"
+                filter="drop-shadow(0 0 6px #00f2ff)"
+                style={{
+                  transformOrigin: 'bottom',
+                  animation: 'barGrow0 4s ease-in-out infinite'
+                }}
+              />
+              <circle 
+                cx="115" cy="110" r="10"
+                fill="none"
+                stroke="#ffd700"
+                strokeWidth="1"
+                strokeDasharray="4"
+                style={{
+                  transformOrigin: 'center',
+                  animation: 'haloFlash 4s ease-in-out infinite'
+                }}
+              />
+              
+              <rect 
+                x="150" y="90" width="30" height="60" rx="4"
+                fill="url(#barGradStaking)"
+                stroke="#00f2ff"
+                strokeWidth="1.2"
+                filter="drop-shadow(0 0 6px #00f2ff)"
+                style={{
+                  transformOrigin: 'bottom',
+                  animation: 'barGrow1 4s ease-in-out infinite 0.5s'
+                }}
+              />
+              <circle 
+                cx="165" cy="90" r="10"
+                fill="none"
+                stroke="#ffd700"
+                strokeWidth="1"
+                strokeDasharray="4"
+                style={{
+                  transformOrigin: 'center',
+                  animation: 'haloFlash 4s ease-in-out infinite 0.5s'
+                }}
+              />
+              
+              <rect 
+                x="200" y="70" width="30" height="80" rx="4"
+                fill="url(#barGradStaking)"
+                stroke="#00f2ff"
+                strokeWidth="1.2"
+                filter="drop-shadow(0 0 6px #00f2ff)"
+                style={{
+                  transformOrigin: 'bottom',
+                  animation: 'barGrow2 4s ease-in-out infinite 1s'
+                }}
+              />
+              <circle 
+                cx="215" cy="70" r="10"
+                fill="none"
+                stroke="#ffd700"
+                strokeWidth="1"
+                strokeDasharray="4"
+                style={{
+                  transformOrigin: 'center',
+                  animation: 'haloFlash 4s ease-in-out infinite 1s'
+                }}
+              />
+              
+              <rect 
+                x="250" y="100" width="30" height="50" rx="4"
+                fill="url(#barGradStaking)"
+                stroke="#00f2ff"
+                strokeWidth="1.2"
+                filter="drop-shadow(0 0 6px #00f2ff)"
+                style={{
+                  transformOrigin: 'bottom',
+                  animation: 'barGrow3 4s ease-in-out infinite 1.5s'
+                }}
+              />
+              <circle 
+                cx="265" cy="100" r="10"
+                fill="none"
+                stroke="#ffd700"
+                strokeWidth="1"
+                strokeDasharray="4"
+                style={{
+                  transformOrigin: 'center',
+                  animation: 'haloFlash 4s ease-in-out infinite 1.5s'
+                }}
+              />
+            </svg>
+          );
+          return <StakingYieldsBarChart />;
+        })()}
+    </div>
+  </div>
+</div>
+
+Staking yields represent the rewards earned by participants who lock their tokens to support network security and operations. In Kamino's ecosystem, staking yields come from various sources including validator rewards, protocol fees, and incentive programs.
 
 ## How Staking Yields Work
 

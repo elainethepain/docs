@@ -5,6 +5,54 @@ description: "How interest rates are calculated and managed"
 
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const InterestRateWave = (props) => (
+          <svg
+            width={300}
+            height={300}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <path 
+              id="wave" 
+              d="M0 100 Q50 40 100 100 T200 100 T300 100 T400 100"
+              fill="none" 
+              stroke="#00f2ff" 
+              strokeWidth="2"
+              strokeLinecap="round" 
+              strokeDasharray="6 6"
+              style={{
+                animation: 'waveFlow 4s linear infinite'
+              }}
+            />
+          </svg>
+        );
+        return <InterestRateWave />;
+      })()}
+    </div>
+  </div>
+</div>
+
 Interest rate models are mathematical frameworks that determine how borrowing and lending rates are calculated in DeFi protocols. Understanding these models is crucial for predicting costs, optimizing strategies, and managing risk in Kamino's ecosystem.
 
 ## How Interest Rate Models Work
