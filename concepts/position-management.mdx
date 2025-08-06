@@ -4,6 +4,100 @@ description: "Opening, managing, and closing positions effectively"
 ---
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const PositionManagementNode = (props) => (
+          <svg
+            width={300}
+            height={300}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <linearGradient id="faceGradPos" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00f2ff"/>
+                <stop offset="100%" stopColor="#1188ff"/>
+              </linearGradient>
+              <radialGradient id="satGradPos" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#fff7cc"/>
+                <stop offset="100%" stopColor="#ffd700"/>
+              </radialGradient>
+            </defs>
+
+            <circle 
+              cx="200" cy="100" r="80" 
+              fill="none" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              filter="drop-shadow(0 0 4px #00f2ff)"
+              style={{
+                animation: 'nodePulse 5s ease-in-out infinite'
+              }}
+            />
+
+            <g 
+              style={{
+                filter: 'drop-shadow(0 0 6px #00f2ff)',
+                animation: 'nodeSpin 9s linear infinite',
+                transformOrigin: '200px 100px'
+              }}
+            >
+              <polygon points="200,45 225,70 175,70" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,45 245,85 225,70" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,45 245,85 200,100" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,45 175,70 155,85" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,45 200,100 155,85" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,155 225,130 175,130" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,155 245,115 225,130" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,155 245,115 200,100" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,155 175,130 155,115" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+              <polygon points="200,155 200,100 155,115" fill="url(#faceGradPos)" stroke="#00f2ff" strokeWidth="1.2"/>
+            </g>
+
+            <g 
+              style={{
+                transformOrigin: '200px 100px',
+                animation: 'orbitCW 12s linear infinite'
+              }}
+            >
+              <ellipse cx="200" cy="100" rx="95" ry="45" fill="none" stroke="#00f2ff" strokeWidth="0.6" strokeDasharray="5" opacity="0.35"/>
+              <circle cx="295" cy="100" r="6" fill="url(#satGradPos)" stroke="#ffd700" strokeWidth="0.8"/>
+            </g>
+            <g 
+              style={{
+                transformOrigin: '200px 100px',
+                animation: 'orbitCCW 15s linear infinite'
+              }}
+            >
+              <ellipse cx="200" cy="100" rx="70" ry="32" fill="none" stroke="#00f2ff" strokeWidth="0.6" strokeDasharray="5" opacity="0.35"/>
+              <circle cx="270" cy="100" r="5" fill="url(#satGradPos)" stroke="#ffd700" strokeWidth="0.8"/>
+            </g>
+          </svg>
+        );
+        return <PositionManagementNode />;
+      })()}
+    </div>
+  </div>
+</div>
 
 Position management is the art of effectively opening, monitoring, adjusting, and closing DeFi positions to maximize returns while minimizing risk. In Kamino's ecosystem, proper position management is crucial for successful borrowing, lending, and yield farming strategies.
 

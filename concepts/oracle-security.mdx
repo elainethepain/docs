@@ -4,6 +4,98 @@ title: "Oracle Security"
 ---
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const OracleSecurityPrism = (props) => (
+          <svg
+            width={300}
+            height={300}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <linearGradient id="prism" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#9be7ff"/>
+                <stop offset="100%" stopColor="#00f2ff"/>
+              </linearGradient>
+            </defs>
+            
+            <polygon 
+              id="core" 
+              points="200,60 240,100 200,140 160,100"
+              fill="url(#prism)" 
+              stroke="#00f2ff" 
+              strokeWidth="1"
+              filter="drop-shadow(0 0 8px #00f2ff)"
+              style={{
+                transformOrigin: '200px 100px',
+                animation: 'prismRotate 8s linear infinite'
+              }}
+            />
+            
+            <line 
+              x1="200" y1="60" x2="200" y2="20" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              strokeDasharray="4"
+              style={{
+                animation: 'scanBeam 2s linear infinite'
+              }}
+            />
+            <line 
+              x1="240" y1="100" x2="280" y2="100" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              strokeDasharray="4"
+              style={{
+                animation: 'scanBeam 2s linear infinite'
+              }}
+            />
+            <line 
+              x1="200" y1="140" x2="200" y2="180" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              strokeDasharray="4"
+              style={{
+                animation: 'scanBeam 2s linear infinite'
+              }}
+            />
+            <line 
+              x1="160" y1="100" x2="120" y2="100" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              strokeDasharray="4"
+              style={{
+                animation: 'scanBeam 2s linear infinite'
+              }}
+            />
+          </svg>
+        );
+        return <OracleSecurityPrism />;
+      })()}
+    </div>
+  </div>
+</div>
+
 Oracle security is fundamental to Kamino's risk management system. Price feeds provide real-time market data that determines collateral values, liquidation thresholds, and position health. Understanding oracle security helps users assess the reliability of the protocol's risk management.
 
 ## How Price Feeds Work

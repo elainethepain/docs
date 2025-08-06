@@ -15,56 +15,83 @@ title: "Borrow/Lend"
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
   }}>
-    <div style={{
-      position: 'absolute',
-      top: '48%',
-      left: '40%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 10
-    }}>
-      {(() => {
-        const BorrowLendStars = (props) => (
-          <svg
-            width={300}
-            height={300}
-            viewBox="0 0 400 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            {...props}
-          >
-            <defs>
-              <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00f2ff"/>
-                <stop offset="100%" stopColor="#9be7ff"/>
-              </linearGradient>
-              <linearGradient id="isolatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffc0cb"/>
-                <stop offset="100%" stopColor="#ff85a2"/>
-              </linearGradient>
-            </defs>
-            
-            <polygon 
-              className="star" 
-              stroke="url(#starGradient)"
-              points="100,90 110,110 130,110 115,125 120,145 100,135 80,145 85,125 70,110 90,110"
-            />
-            <polygon 
-              className="star" 
-              stroke="url(#starGradient)"
-              points="150,60 160,80 180,80 165,95 170,115 150,105 130,115 135,95 120,80 140,80"
-            />
-            
-            <line className="line" x1="100" y1="90" x2="150" y2="60"/>
-            
-            <polygon 
-              className="star isolated" 
-              stroke="url(#isolatedGradient)"
-              points="300,100 310,120 330,120 315,135 320,155 300,145 280,155 285,135 270,120 290,120"
-            />
-          </svg>
-        );
-        return <BorrowLendStars />;
-      })()}
+            <div style={{
+          position: 'absolute',
+          top: '48%',
+          left: '40%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 10
+        }}>
+          {(() => {
+            const BorrowLendShootingStars = (props) => (
+              <svg
+                width={300}
+                height={300}
+                viewBox="0 0 400 200"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+              >
+                <defs>
+                  <linearGradient id="starGradBorrow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#00f2ff"/>
+                    <stop offset="100%" stopColor="#9be7ff"/>
+                  </linearGradient>
+                </defs>
+
+                <g 
+                  style={{
+                    animation: 'shootLeft 6s linear infinite',
+                    transformOrigin: 'center'
+                  }}
+                >
+                  <line 
+                    x1="60" y1="140" x2="130" y2="110" 
+                    stroke="#00f2ff" 
+                    strokeWidth="0.7" 
+                    strokeDasharray="4 4" 
+                    opacity="0.45"
+                    style={{
+                      animation: 'trailDash 6s linear infinite'
+                    }}
+                  />
+                  <polygon
+                    points="130,110 134,118 143,119 136,125 138,134 130,129 122,134 124,125 117,119 126,118"
+                    fill="none"
+                    stroke="url(#starGradBorrow)"
+                    strokeWidth="1.6"
+                    filter="drop-shadow(0 0 6px #00f2ff)"
+                  />
+                </g>
+
+                <g 
+                  style={{
+                    animation: 'shootRight 6s linear infinite 3s',
+                    transformOrigin: 'center'
+                  }}
+                >
+                  <line 
+                    x1="340" y1="40" x2="270" y2="70" 
+                    stroke="#00f2ff" 
+                    strokeWidth="0.7" 
+                    strokeDasharray="4 4" 
+                    opacity="0.45"
+                    style={{
+                      animation: 'trailDash 6s linear infinite'
+                    }}
+                  />
+                  <polygon
+                    points="270,70 274,78 283,79 276,85 278,94 270,89 262,94 264,85 257,79 266,78"
+                    fill="none"
+                    stroke="url(#starGradBorrow)"
+                    strokeWidth="1.6"
+                    filter="drop-shadow(0 0 6px #00f2ff)"
+                  />
+                </g>
+              </svg>
+            );
+            return <BorrowLendShootingStars />;
+          })()}
     </div>
   </div>
 </div>

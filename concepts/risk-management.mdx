@@ -4,6 +4,112 @@ description: "Understanding impermanent loss and market risks in DeFi"
 ---
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const RiskManagementBeacon = (props) => (
+          <svg
+            width={300}
+            height={300}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <defs>
+              <linearGradient id="sideGradRisk" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#005a7a"/>
+                <stop offset="50%" stopColor="#00b4ff"/>
+                <stop offset="100%" stopColor="#005a7a"/>
+              </linearGradient>
+              <linearGradient id="rimGradRisk" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#00e0ff"/>
+                <stop offset="100%" stopColor="#0075a0"/>
+              </linearGradient>
+              <linearGradient id="glassGradRisk" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#9be7ff"/>
+                <stop offset="100%" stopColor="#00f2ff"/>
+              </linearGradient>
+            </defs>
+
+            <rect 
+              x="180" y="78" width="40" height="82" 
+              fill="url(#sideGradRisk)" 
+              stroke="#00f2ff" 
+              strokeWidth="1.3"
+            />
+            <ellipse 
+              cx="200" cy="78" rx="20" ry="6.5" 
+              fill="url(#sideGradRisk)" 
+              stroke="#00f2ff" 
+              strokeWidth="1.3"
+            />
+            <ellipse 
+              cx="200" cy="160" rx="20" ry="7" 
+              fill="url(#rimGradRisk)" 
+              stroke="none" 
+              filter="drop-shadow(0 0 4px #00f2ff)"
+            />
+
+            <ellipse 
+              cx="200" cy="99" rx="16" ry="12" 
+              fill="url(#glassGradRisk)" 
+              stroke="#00f2ff" 
+              strokeWidth="1" 
+              opacity="0.55"
+            />
+
+            <g 
+              style={{
+                transformOrigin: '200px 78px',
+                animation: 'beaconSpin 6s linear infinite'
+              }}
+            >
+              <path 
+                d="M200 78 L295 48 L295 108 Z" 
+                fill="rgba(0,242,255,0.07)" 
+                stroke="#00f2ff" 
+                strokeWidth="0.6"
+                strokeDasharray="6 6"
+                style={{
+                  animation: 'beaconSweep 6s linear infinite'
+                }}
+              />
+            </g>
+
+            <circle 
+              cx="200" cy="78" r="6" 
+              fill="#ffd700" 
+              stroke="#ffd700" 
+              strokeWidth="0.6"
+              style={{
+                transformOrigin: '200px 78px',
+                animation: 'beaconPulse 3s ease-in-out infinite'
+              }}
+            />
+          </svg>
+        );
+        return <RiskManagementBeacon />;
+      })()}
+    </div>
+  </div>
+</div>
 
 Risk management is the cornerstone of successful DeFi participation. Understanding and mitigating various risks, particularly impermanent loss and market volatility, is essential for protecting capital and achieving sustainable returns in Kamino's ecosystem.
 

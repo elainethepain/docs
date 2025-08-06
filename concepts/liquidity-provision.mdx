@@ -4,6 +4,73 @@ description: "Providing liquidity to earn yield on Kamino"
 ---
 <div style={{borderBottom: "1px solid rgba(229, 231, 235, 0.3)", marginBottom: "2rem"}}></div>
 
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <div style={{
+    position: 'relative',
+    display: 'inline-block',
+    width: '700px',
+    height: '300px',
+    backgroundImage: 'url(/images/concept-animations/animation-backdrop.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  }}>
+    <div style={{
+      position: 'absolute',
+      top: '48%',
+      left: '40%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10
+    }}>
+      {(() => {
+        const LiquidityProvisionLightning = (props) => (
+          <svg
+            width={280}
+            height={280}
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+          >
+            <ellipse 
+              cx="200" cy="160" rx="90" ry="12" 
+              fill="none" 
+              stroke="#00f2ff" 
+              strokeWidth="1.2" 
+              opacity="0.45"
+            />
+            <ellipse 
+              cx="200" cy="160" rx="120" ry="18" 
+              fill="none" 
+              stroke="#00f2ff" 
+              strokeWidth="1.2" 
+              opacity="0.45"
+              strokeDasharray="6 6"
+              style={{
+                animation: 'liquidityRipple 4s linear infinite'
+              }}
+            />
+
+            <polyline
+              points="200,40 200,80 185,100 210,120 190,140 200,160"
+              fill="none"
+              stroke="#9be7ff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="drop-shadow(0 0 8px #00f2ff)"
+              style={{
+                animation: 'lightningFlash 2s infinite ease-in-out'
+              }}
+            />
+          </svg>
+        );
+        return <LiquidityProvisionLightning />;
+      })()}
+    </div>
+  </div>
+</div>
+
 ## Overview
 
 Liquidity provision is a core DeFi activity that allows users to earn yield by providing assets to trading pools. Kamino's automated liquidity vaults make this process simple and efficient, while maximizing returns through advanced strategies.
